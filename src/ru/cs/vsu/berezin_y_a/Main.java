@@ -18,11 +18,11 @@ public class Main {
         DefaultTrafficLight defaultTrafficLight = new DefaultTrafficLight(TrafficLightState.RED);
         DefaultVisualPainter defaultVisualPainter = new DefaultVisualPainter(defaultTrafficLight);
 
-//        PedestrianTrafficLight pedestrianTrafficLight = new PedestrianTrafficLight(TrafficLightState.RED);
-//        PedestrianVisualPainter pedestrianVisualPainter = new PedestrianVisualPainter(pedestrianTrafficLight);
+        PedestrianTrafficLight pedestrianTrafficLight = new PedestrianTrafficLight(TrafficLightState.RED);
+        PedestrianVisualPainter pedestrianVisualPainter = new PedestrianVisualPainter(pedestrianTrafficLight);
 
-//        AdditionalTrafficLight additionalTrafficLight = new AdditionalTrafficLight(TrafficLightState.RED);
-//        AdditionalVisualPainter additionalVisualPainter = new AdditionalVisualPainter(additionalTrafficLight);
+        AdditionalTrafficLight additionalTrafficLight = new AdditionalTrafficLight(TrafficLightState.RED);
+        AdditionalVisualPainter additionalVisualPainter = new AdditionalVisualPainter(additionalTrafficLight);
 
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
