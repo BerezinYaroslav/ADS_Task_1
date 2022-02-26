@@ -1,14 +1,16 @@
-package ru.cs.vsu.berezin_y_a;
+package ru.cs.vsu.berezin_y_a.Visual;
+
+import ru.cs.vsu.berezin_y_a.TrafficLights.DefaultTrafficLight;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class VisualPainter extends JFrame {
+public class DefaultVisualPainter extends JFrame {
 
-    TrafficLight trafficLight;
+    DefaultTrafficLight defaultTrafficLight;
 
-    public VisualPainter(TrafficLight trafficLight) {
-        this.trafficLight = trafficLight;
+    public DefaultVisualPainter(DefaultTrafficLight defaultTrafficLight) {
+        this.defaultTrafficLight = defaultTrafficLight;
         setTitle("Traffic Light");
         setSize(400, 700);
         setVisible(true);
@@ -33,23 +35,23 @@ public class VisualPainter extends JFrame {
         g2d.fillOval(150, 300, 100, 100);
         g2d.fillOval(150, 450, 100, 100);
 
-        changeVisualColor(g2d, trafficLight);
+        changeVisualColor(g2d, defaultTrafficLight);
 
     }
 
-    public void changeVisualColor(Graphics2D g2d, TrafficLight trafficLight) {
-        switch (trafficLight.state){
+    public void changeVisualColor(Graphics2D g2d, DefaultTrafficLight defaultTrafficLight) {
+        switch (defaultTrafficLight.getState()){
             case GREEN -> {
                 g2d.setColor(Color.GREEN);
                 g2d.fillOval(150, 450, 100, 100);
             }
-            case YELLOW_BEFORE_GREEN, YELLOW_BEFORE_RED -> {
-                g2d.setColor(Color.YELLOW);
-                g2d.fillOval(150, 300, 100, 100);
-            }
             case RED -> {
                 g2d.setColor(Color.RED);
                 g2d.fillOval(150, 150, 100, 100);
+            }
+            default -> {
+                g2d.setColor(Color.YELLOW);
+                g2d.fillOval(150, 300, 100, 100);
             }
         }
     }
