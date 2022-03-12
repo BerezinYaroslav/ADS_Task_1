@@ -6,6 +6,8 @@ import ru.cs.vsu.berezin_y_a.TrafficLights.PedestrianTrafficLight;
 import ru.cs.vsu.berezin_y_a.Visual.PedestrianVisualPainter;
 import ru.cs.vsu.berezin_y_a.TrafficLights.AdditionalTrafficLight;
 import ru.cs.vsu.berezin_y_a.Visual.AdditionalVisualPainter;
+
+import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -15,33 +17,65 @@ public class Main {
 
         Timer timer = new Timer();
 
-//        DefaultTrafficLight defaultTrafficLight = new DefaultTrafficLight(TrafficLightState.RED);
-//        DefaultVisualPainter defaultVisualPainter = new DefaultVisualPainter(defaultTrafficLight);
+        System.out.println("Choosing the type of Traffic Light:");
+        System.out.println("1 - Default;");
+        System.out.println("2 - For People;");
+        System.out.println("3 - Additional.");
+        System.out.print("Enter the number: ");
 
-//        PedestrianTrafficLight pedestrianTrafficLight = new PedestrianTrafficLight(TrafficLightState.RED);
-//        PedestrianVisualPainter pedestrianVisualPainter = new PedestrianVisualPainter(pedestrianTrafficLight);
+        int type = readNum();
 
-//        AdditionalTrafficLight additionalTrafficLight = new AdditionalTrafficLight(TrafficLightState.RED);
-//        AdditionalVisualPainter additionalVisualPainter = new AdditionalVisualPainter(additionalTrafficLight);
+        switch (type) {
+            case 1: {
+                DefaultTrafficLight defaultTrafficLight = new DefaultTrafficLight(TrafficLightState.RED);
+                DefaultVisualPainter defaultVisualPainter = new DefaultVisualPainter(defaultTrafficLight);
 
-        timer.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-
-//                defaultTrafficLight.changeColor();
-//                defaultVisualPainter.repaint();
-
-//                pedestrianTrafficLight.changeColor();
-//                pedestrianVisualPainter.repaint();
-
-//                additionalTrafficLight.changeColor();
-//                additionalVisualPainter.repaint();
-
+                timer.scheduleAtFixedRate(new TimerTask() {
+                    @Override
+                    public void run() {
+                        defaultTrafficLight.changeColor();
+                        defaultVisualPainter.repaint();
+                    }
+                }, 2*1000, 2*1000);
+                break;
             }
-        }, 2*1000, 2*1000);
+
+            case 2: {
+                PedestrianTrafficLight pedestrianTrafficLight = new PedestrianTrafficLight(TrafficLightState.RED);
+                PedestrianVisualPainter pedestrianVisualPainter = new PedestrianVisualPainter(pedestrianTrafficLight);
+
+                timer.scheduleAtFixedRate(new TimerTask() {
+                    @Override
+                    public void run() {
+                        pedestrianTrafficLight.changeColor();
+                        pedestrianVisualPainter.repaint();
+                    }
+                }, 2*1000, 2*1000);
+                break;
+            }
+
+            case 3: {
+                AdditionalTrafficLight additionalTrafficLight = new AdditionalTrafficLight(TrafficLightState.RED);
+                AdditionalVisualPainter additionalVisualPainter = new AdditionalVisualPainter(additionalTrafficLight);
+
+                timer.scheduleAtFixedRate(new TimerTask() {
+                    @Override
+                    public void run() {
+                        additionalTrafficLight.changeColor();
+                        additionalVisualPainter.repaint();
+                    }
+                }, 2*1000, 2*1000);
+                break;
+            }
+
+            default: System.out.println("Invalid number entered, try again.");
+        }
 
     }
 
-    // TODO: 26.02.2022: timer, different types (classes, not enum)
+    private static int readNum() {
+        Scanner scanner = new Scanner(System.in);
+        return (scanner.nextInt());
+    }
 
 }
